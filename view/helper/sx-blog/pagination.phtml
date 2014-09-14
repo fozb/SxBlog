@@ -4,34 +4,46 @@ if (empty($this->params)) {
 }
 
 if ($this->pageCount): ?>
-<div class="paginationControl">
+<ul class="paginationControl">
     <!-- Previous page link -->
     <?php if (isset($this->previous)): ?>
-    <a href="<?php echo $this->url($this->route, array_merge(array('page' => $this->previous), $this->params)); ?>">
-        < Previous
-    </a> |
+    <li>
+        <a href="<?php echo $this->url($this->route, array_merge(array('page' => $this->previous), $this->params)); ?>" rel="prev">
+            < Previous
+        </a> |
+    </li>
     <?php else: ?>
-    <span class="disabled">< Previous</span> |
+    <li>
+        <span class="disabled">< Previous</span> |
+    </li>
     <?php endif; ?>
 
     <!-- Numbered page links -->
     <?php foreach ($this->pagesInRange as $page): ?>
     <?php if ($page != $this->current): ?>
-        <a href="<?php echo $this->url($this->route,  array_merge(array('page' => $page), $this->params)); ?>">
-            <?php echo $page; ?>
-        </a> |
+        <li>
+            <a href="<?php echo $this->url($this->route,  array_merge(array('page' => $page), $this->params)); ?>">
+                <?php echo $page; ?>
+            </a> |
+        </li>
         <?php else: ?>
-        <?php echo $page; ?> |
+        <li>
+            <?php echo $page; ?> |
+        </li>
         <?php endif; ?>
     <?php endforeach; ?>
 
     <!-- Next page link -->
     <?php if (isset($this->next)): ?>
-    <a href="<?php echo $this->url($this->route,  array_merge(array('page' => $this->next), $this->params)); ?>">
-        Next >
-    </a>
+    <li>
+        <a href="<?php echo $this->url($this->route,  array_merge(array('page' => $this->next), $this->params)); ?>" rel="next">
+            Next >
+        </a>
+    </li>
     <?php else: ?>
-    <span class="disabled">Next ></span>
+    <li>
+        <span class="disabled">Next ></span>
+    </li>
     <?php endif; ?>
-</div>
+</ul>
 <?php endif; ?>
